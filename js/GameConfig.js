@@ -14,6 +14,7 @@ var GameConfig = {
         "js/game/Level.js",
 	    "js/game/Runner.js",
 	    
+        "js/game/ObjectClasses/Laser.js",
 	    "js/game/ObjectClasses/Player.js",
 	    "js/game/ObjectClasses/Coin.js",
 	    "js/game/ObjectClasses/StationaryObstacle.js",

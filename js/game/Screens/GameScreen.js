@@ -26,14 +26,13 @@ GameScreen = function(width, height) {
 		
 	// Event listeners
 	this.addEventListener("update", this.Update.bind(this));
-	//this.addEventListener("mousedown", this.MouseDown.bind(this));
-	//this.addEventListener("mouseup", this.MouseUp.bind(this));
-	this.addEventListener("keyup", this.MouseUp.bind(this));
-	this.addEventListener("keydown", this.MouseDown.bind(this));
 
-	
-	//this.bind('w', function(){ this.MouseUp(); });
-	//this.bind('s', function(){ this.MouseDown(); });
+	this.addEventListener("mousedown", this.MouseDown.bind(this));
+	this.addEventListener("mouseup", this.MouseUp.bind(this));
+
+	this.addEventListener("keyup", this.keyUp.bind(this));
+	this.addEventListener("keydown", this.keyDown.bind(this));
+
 };
 
 GameScreen.prototype = {
@@ -214,7 +213,7 @@ GameScreen.prototype = {
                     }));
 				}
 			}
-
+			//console.log(this.obstacleLayer);
 			this.mLastObstacle = this.mPlayer.worldX;
 		}
 	},
@@ -392,15 +391,37 @@ GameScreen.prototype = {
 	
 	IncPlayerDistance : function(pixels) { this.mDistance += pixels / 100; },
 	GetPlayer : function() { return this.mPlayer; },
-	MouseDown : function(key) {
+	keyDown : function(key) {
+
 		if(key.keyCode == 38) {
+
 			this.mousedown = 1; 
+
 		}else if(key.keyCode == 40){
+
 			this.mousedown = 2;
+
 		}
 	},
-	MouseUp : function(key) { 
+	keyUp : function(key) { 
 		this.mousedown = false; 
+	},
+	MouseDown : function(e){
+		//finsh this
+		//console.log(e);
+		console.log(this.obstacleLayer);
+		this.obstacleLayer.addChild(new Laser().setup({
+			x : e.stageX,
+			y : e.stageY,
+			spawnX : mPlayer.worldX,
+			spawnY : mplayer.worldY,
+			OpsticalObject : this.obstacleLayer,
+		}));
+	},
+	MouseUp : function(e){
+		//finish this
+		//console.log(e);
+		//alert(e);
 	},
 
 }

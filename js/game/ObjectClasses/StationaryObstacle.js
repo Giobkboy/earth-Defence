@@ -21,6 +21,7 @@ StationaryObstacle.prototype = {
 	
 	DetermineObstacleType : function(params, type) 
 	{
+		this.type = type;
 		// Ceiling pulley
 		if (type == 1) {  								
 			params.image = "stationary_obstacle_1";
@@ -45,6 +46,7 @@ StationaryObstacle.prototype = {
 		var playerBounds = this.mGame.GetPlayer().getBounds();
 		var obstacleBounds = this.getBounds();
 		if (obstacleBounds.intersects(playerBounds, obstacleBuffer, playerBuffer)) {
+			console.log(obstacleBounds);
 			this.mGame.GetPlayer().mStopped = true;
 			this.mGame.PlayerHitObstacle();
 			this.markForRemoval();	
