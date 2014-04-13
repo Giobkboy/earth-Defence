@@ -411,13 +411,13 @@ GameScreen.prototype = {
 	},
 	MouseDown : function(e){
 		//finsh this
-		if(200 > e.stageX){
+		if(200 < e.stageX){
 			this.obstacleLayer.addChild(new Laser().setup({
 				x : e.stageX,
 				y : e.stageY,
 				spawnX : this.mPlayer.worldX,
 				spawnY : this.mPlayer.worldY,
-				masterGame : this,			
+				masterGame : this, 			
 			}));
 		}
 	},

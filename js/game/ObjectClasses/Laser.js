@@ -1,9 +1,8 @@
 
 Laser = function(){
-
 	Laser.superclass.constructor.call(this);
 
-	this.constant = 200;
+	this.constant = 10;
 
 	//this set of cords holds the destination of the laser
 	this.xCor = 0;
@@ -31,9 +30,11 @@ Laser.prototype = {
 		this.spawnX = prams.spawnX;
 		this.spawnY = prams.spawnY;
 
-		prams.image = "laser";
-
 		this.mGame = prams.masterGame;
+		prams.image = "coin";
+		console.log(Laser.superclass);
+		Laser.superclass.setup.call(this, prams);
+		//Laser.superclass.setImage.call("coin");
 
 		this.distance = Math.sqrt(Math.pow(this.spawnX-this.xCor, 2) + Math.pow(this.spawnY-this.yCor, 2));
 	},
