@@ -16,7 +16,7 @@ Laser = function(){
 	this.distance = 0;
 
 	this.addEventListener("update", this.UpdatePosition.bind(this));
-	//this.addEventListener("update", this.DetectCollisions.bind(this));
+	this.addEventListener("update", this.DetectCollisions.bind(this));
 	this.useWorldPosition(true);
 }
 
@@ -70,6 +70,7 @@ Laser.prototype = {
 		for(var i = 0; i < this.mGame.obstacleLayer.numChildren(); i++){
 			Obstical = this.mGame.obstacleLayer.getChildAt(i);
 			if(Obstical.getBounds().intersects(obstacleBounds, obstacleBuffer, playerBuffer)){
+				console.log("EXPLODING!!!");
 				Obstical.markForRemoval();
 				this.markForRemoval();
 			}

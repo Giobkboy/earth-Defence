@@ -47,6 +47,7 @@ GameScreen.prototype = {
 		this.addChild(this.coinLayer = new TGE.DisplayObjectContainer().setup({}));
 		this.addChild(this.obstacleLayer = new TGE.DisplayObjectContainer().setup({}));
 		this.addChild(this.UILayer = new TGE.DisplayObjectContainer().setup({}));
+		this.addChild(this.boomboom = new TGE.DisplayObjectContainer().setup({}));
 		
 		//Setup parallax planes
 		this.SetupParallaxingPlanes();
@@ -412,7 +413,7 @@ GameScreen.prototype = {
 	MouseDown : function(e){
 		//finsh this
 		if(200 < e.stageX){
-			this.obstacleLayer.addChild(new Laser().setup({
+			this.boomboom.addChild(new Laser().setup({
 				//what he did
 				x : this.mPlayer.worldX + e.stageX - this.percentageOfHeight(0.35),
 				y : this.mPlayer.worldY + this.percentageOfHeight(0.75) - e.stageY,
