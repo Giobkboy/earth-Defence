@@ -16,7 +16,7 @@ Laser = function(){
 	this.distance = 0;
 
 	this.addEventListener("update", this.UpdatePosition.bind(this));
-	this.addEventListener("update", this.DetectCollisions.bind(this));
+	//this.addEventListener("update", this.DetectCollisions.bind(this));
 	this.useWorldPosition(true);
 }
 
@@ -30,13 +30,23 @@ Laser.prototype = {
 		this.spawnX = prams.spawnX;
 		this.spawnY = prams.spawnY;
 
+		this.worldX = this.spawnX;
+		this.worldY = this.spawnY;
+
 		this.mGame = prams.masterGame;
+	
+		/*
 		prams.image = "coin";
-		console.log(Laser.superclass);
+		Laser.superclass.setImage(this, prams.image);
+
+		*/
 		Laser.superclass.setup.call(this, prams);
-		//Laser.superclass.setImage.call("coin");
+		this.setImage("coin");
+		console.log(this.worldX);
+		console.log(this.worldY);
 
 		this.distance = Math.sqrt(Math.pow(this.spawnX-this.xCor, 2) + Math.pow(this.spawnY-this.yCor, 2));
+		return this;
 	},
 
 	UpdatePosition : function(event){

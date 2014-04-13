@@ -413,8 +413,9 @@ GameScreen.prototype = {
 		//finsh this
 		if(200 < e.stageX){
 			this.obstacleLayer.addChild(new Laser().setup({
-				x : e.stageX,
-				y : e.stageY,
+				//what he did
+				x : this.mPlayer.worldX + e.stageX - this.percentageOfHeight(0.35),
+				y : this.mPlayer.worldY + this.percentageOfHeight(0.75) - e.stageY,
 				spawnX : this.mPlayer.worldX,
 				spawnY : this.mPlayer.worldY,
 				masterGame : this, 			
