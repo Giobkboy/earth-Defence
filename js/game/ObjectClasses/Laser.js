@@ -3,7 +3,7 @@ Laser = function(){
 
 	Laser.superclass.constructor.call(this);
 
-	this.constant = 2;
+	this.constant = 200;
 
 	//this set of cords holds the destination of the laser
 	this.xCor = 0;
@@ -15,8 +15,6 @@ Laser = function(){
 
 	//the distance betewn the two points
 	this.distance = 0;
-
-	this.OpsticalObject = null;
 
 	this.addEventListener("update", this.UpdatePosition.bind(this));
 	this.addEventListener("update", this.DetectCollisions.bind(this));
@@ -33,18 +31,22 @@ Laser.prototype = {
 		this.spawnX = prams.spawnX;
 		this.spawnY = prams.spawnY;
 
-		//prams.image = "laser";
+		prams.image = "laser";
 
-		this.OpsticalObject = prams.OpsticalObject;
+		this.mGame = prams.masterGame;
 
-		this.distance = Math.sqrt(Math.pow(Math.abs(this.xCor-this.spawnX), 2) + Math.pow(Math.abs(this.yCor-this.spawnY), 2));
+		this.distance = Math.sqrt(Math.pow(this.spawnX-this.xCor, 2) + Math.pow(this.spawnY-this.yCor, 2));
 	},
 
 	UpdatePosition : function(event){
 		
+		this.worldX += this.mGame.mPlayer.mHorizontalSpeed;
 		this.n = this.distance/this.constant;
 		this.worldX += (this.xCor - this.spawnX)/this.n;
 		this.worldY += (this.yCor - this.spawnY)/this.n;
+		if(this.xCor < this.worldX && this.yCor < this.worldY){
+			this.markForRemoval();
+		}
 	},
 
 	DetectCollisions : function(event){
@@ -54,10 +56,8 @@ Laser.prototype = {
 		var obstacleBuffer = 0.7;
 		var playerBuffer = 0.5;
 
-		console.log(this.OpsticalObject);
-
-		for(var i = 0; i < this.OpsticalObject.numChildern(); i++){
-			Obstical = this.OpsticalObject.getChildAt(i);
+		for(var i = 0; i < this.mGame.obstacleLayer.numChildren(); i++){
+			Obstical = this.mGame.obstacleLayer.getChildAt(i);
 			if(Obstical.getBounds().intersects(obstacleBounds, obstacleBuffer, playerBuffer)){
 				Obstical.markForRemoval();
 				this.markForRemoval();

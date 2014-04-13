@@ -139,6 +139,7 @@ Player.prototype = {
 
 	SetSpeed : function(speed) {
 		this.mHorizontalSpeed = speed * this.mGame.width;
+		this.mRawSpeed = speed
 	},
 	
 	SetFallSpeed : function(fallSpeed) {

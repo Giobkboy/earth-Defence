@@ -163,7 +163,10 @@ GameScreen.prototype = {
 				
 				// ending game?
 				else if (nextEvent.event == "game_finished") {
-					this.EndGame();
+					//this.EndGame();
+
+					this.mEventIndex = 3;
+					this.mPlayer.SetSpeed(this.mPlayer.mRawSpeed + 0.001);
 				}
 
 				this.mEventIndex++;
@@ -408,15 +411,15 @@ GameScreen.prototype = {
 	},
 	MouseDown : function(e){
 		//finsh this
-		//console.log(e);
-		console.log(this.obstacleLayer);
-		this.obstacleLayer.addChild(new Laser().setup({
-			x : e.stageX,
-			y : e.stageY,
-			spawnX : mPlayer.worldX,
-			spawnY : mplayer.worldY,
-			OpsticalObject : this.obstacleLayer,
-		}));
+		if(200 > e.stageX){
+			this.obstacleLayer.addChild(new Laser().setup({
+				x : e.stageX,
+				y : e.stageY,
+				spawnX : this.mPlayer.worldX,
+				spawnY : this.mPlayer.worldY,
+				masterGame : this,			
+			}));
+		}
 	},
 	MouseUp : function(e){
 		//finish this
