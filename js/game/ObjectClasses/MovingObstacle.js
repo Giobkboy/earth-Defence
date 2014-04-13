@@ -50,7 +50,7 @@ MovingObstacle.prototype = {
 		// Chainsaw
 		else if (type == "B")					
 		{
-			params.image = "moving_obstacle_B";
+			params.image = "moving_obstacle_A";
 			this.mHorizontalSpeed = 0.5;
 			this.mBobAmplitude = 8;
 			this.mBobFrequency = 4;

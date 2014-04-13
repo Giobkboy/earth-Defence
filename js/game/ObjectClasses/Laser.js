@@ -36,12 +36,12 @@ Laser.prototype = {
 		this.mGame = prams.masterGame;
 	
 		/*
-		prams.image = "coin";
+		prams.image = "s";
 		Laser.superclass.setImage(this, prams.image);
 
 		*/
 		Laser.superclass.setup.call(this, prams);
-		this.setImage("coin");
+		this.setImage("laser");
 		console.log(this.worldX);
 		console.log(this.worldY);
 
@@ -70,7 +70,6 @@ Laser.prototype = {
 		for(var i = 0; i < this.mGame.obstacleLayer.numChildren(); i++){
 			Obstical = this.mGame.obstacleLayer.getChildAt(i);
 			if(Obstical.getBounds().intersects(obstacleBounds, obstacleBuffer, playerBuffer)){
-				console.log("EXPLODING!!!");
 				Obstical.markForRemoval();
 				this.markForRemoval();
 			}

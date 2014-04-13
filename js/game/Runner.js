@@ -22,7 +22,7 @@ Runner = function()
         {id:'player_flying', 			url:'player/player_flying.png'},
 
         //lasers it is set to the coin image until the artist are finnished
-        {id: 'laser',                   url: 'coin.png'},
+        {id: 'laser',                   url: 'lazer.png'},
 
         // Backgrounds
         {id:'startscreen_background',   url:'screens/startscreen_background.jpg'},

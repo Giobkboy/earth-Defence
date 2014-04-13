@@ -308,15 +308,16 @@ GameScreen.prototype = {
 		this.artLayer.addChild(new TGE.ParallaxPane().setup({
 			image : "gamescreen_middleground",
 			worldY : 450,
+			y : 125,
 			trackingSpeed : 0.5,
 		}));
 		
 		//Scrolling ground plane
-		this.artLayer.addChild(new TGE.ParallaxPane().setup({
+		/*this.artLayer.addChild(new TGE.ParallaxPane().setup({
 			image : "gamescreen_ground",
 			worldY: 12,
 			trackingSpeed : 1,
-		}));
+		}));*/
 	},
 	
 	SetupHud : function() {
@@ -412,7 +413,8 @@ GameScreen.prototype = {
 	},
 	MouseDown : function(e){
 		//finsh this
-		if(200 < e.stageX){
+		if(200 < e.stageX && this.mCoins > 0){
+			this.mCoins--;
 			this.boomboom.addChild(new Laser().setup({
 				//what he did
 				x : this.mPlayer.worldX + e.stageX - this.percentageOfHeight(0.35),
